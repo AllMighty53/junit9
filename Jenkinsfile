@@ -1,4 +1,7 @@
 node {
+    stage ('cleanWorkspace') {
+    cleanWs()
+    }
     stage ('checkout') {
     git 'git@github.com:AllMighty53/junit9.git'
 
