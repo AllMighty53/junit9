@@ -2,7 +2,7 @@
 Testing/Automationfiles Junit/Gradle
 -
 ~~~
-tests ar ./src/test/java/test.java
+tests at ./src/test/java/test.java
 gradle config ./build.gradle
 ~~~
 
