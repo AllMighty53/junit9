@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.util.Random;
 
 import static java.lang.System.out;
+import static org.junit.Assert.*;
 
 //Makes sure tests runs in order
 @FixMethodOrder(MethodSorters.JVM)
@@ -58,6 +59,7 @@ public class test {
                 .build();
 
         String result = artifactory.repositories().create(2, repository);
+        assertEquals(result.trim(), "Successfully created repository"+" "+"'"+repoName+"'");
     }
 
     @Test
