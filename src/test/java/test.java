@@ -1,3 +1,5 @@
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.jfrog.artifactory.client.Artifactory;
 import org.jfrog.artifactory.client.ArtifactoryClientBuilder;
 import org.jfrog.artifactory.client.model.File;
@@ -9,8 +11,13 @@ import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Random;
 import static java.lang.System.out;
 import static org.junit.Assert.*;
@@ -31,7 +38,7 @@ public class test {
     private static String repoUsername = "admin";
     private static String repoPass = "1qazxsw2";
     private static String repoName = "idan"+xString;
-    private static String filePath = "/Users/idan/IdeaProjects/junit9/src/test/java/fileToUpload.txt";
+    private static String filePath = System.getProperty("user.dir")+"/"+"src/test/java/fileToUpload.txt";
     private static String fileName = "/idan"+xString+".txt";
     private static String CreatingUserName = "idan"+xString;
     private static String userCreationPassword = "sdflkhQW"+xString;
@@ -99,5 +106,6 @@ public class test {
                 .download(fileName)
                 .doDownload();
         out.println(localConnection.getUsername());
+        Files.copy(iStream, Paths.get(System.getProperty("user.dir")+"/"+"downloaded.txt"));
     }
 }
