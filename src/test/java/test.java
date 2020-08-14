@@ -9,24 +9,24 @@ import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
-
 import static java.lang.System.out;
 import static org.junit.Assert.*;
 
 //Makes sure tests runs in order
 @FixMethodOrder(MethodSorters.JVM)
 public class test {
-    //make objects global
     Artifactory artifactory;
     User user;
+
+    //generate random number - for creating random repos/username
     static Random random = new Random();
     private static int x = random.nextInt(900) + 100;
     private static String xString = Integer.toString(x);
-    //to avoid class name - and make global
+
+    //global vars
     private static String repoUrl = "http://jfrog.local:80/artifactory";
     private static String repoUsername = "admin";
     private static String repoPass = "1qazxsw2";
@@ -34,6 +34,7 @@ public class test {
     private static String filePath = "/Users/idan/IdeaProjects/junit9/src/test/java/fileToUpload.txt";
     private static String fileName = "/idan"+xString+".txt";
     private static String CreatingUserName = "idan"+xString;
+    private static String userCreationPassword = "sdflkhQW"+xString;
 
 
     @Before
@@ -81,7 +82,7 @@ public class test {
                 .email(CreatingUserName+"@mail.com")
                 .admin(true)
                 .profileUpdatable(true)
-                .password("q1q1q1q1q1q1")
+                .password(userCreationPassword)
                 .build();
 
         artifactory.security().createOrUpdate(user);
@@ -92,7 +93,7 @@ public class test {
         Artifactory localConnection = ArtifactoryClientBuilder.create()
                 .setUrl(repoUrl)
                 .setUsername(CreatingUserName)
-                .setPassword("q1q1q1q1q1q1")
+                .setPassword(userCreationPassword)
                 .build();
         InputStream iStream = localConnection.repository(repoName)
                 .download(fileName)
