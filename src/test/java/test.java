@@ -1,5 +1,3 @@
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.jfrog.artifactory.client.Artifactory;
 import org.jfrog.artifactory.client.ArtifactoryClientBuilder;
 import org.jfrog.artifactory.client.model.File;
@@ -11,11 +9,8 @@ import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Random;
@@ -30,7 +25,7 @@ public class test {
 
     //generate random number - for creating random repos/username
     static Random random = new Random();
-    private static int x = random.nextInt(900) + 100;
+    private static int x = random.nextInt(9000) + 1000;
     private static String xString = Integer.toString(x);
 
     //global vars
