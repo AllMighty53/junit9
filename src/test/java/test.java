@@ -5,6 +5,7 @@ import org.jfrog.artifactory.client.model.Repository;
 import org.jfrog.artifactory.client.model.User;
 import org.jfrog.artifactory.client.model.builder.UserBuilder;
 import org.jfrog.artifactory.client.model.repository.settings.impl.DebianRepositorySettingsImpl;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -102,5 +103,9 @@ public class test {
                 .doDownload();
         out.println(localConnection.getUsername());
         Files.copy(iStream, Paths.get(System.getProperty("user.dir")+"/"+"downloaded.txt"));
+    }
+    @AfterClass
+    public static void cleanDownloadedFiles() throws IOException {
+        Files.delete(Paths.get(System.getProperty("user.dir")+"/"+"downloaded.txt"));
     }
 }
